@@ -12,13 +12,13 @@ class Pallet : public IContainer{
         Pallet(std::string itemName, int itemCapacity, int itemCount);
         Pallet();
 
-        std::string getItemName();
-        int getItemCount();
-        int getItemCapacity();
-        int getRemainingSpace();
+        std::string getItemName() const;
+        int getItemCount() const;
+        int getItemCapacity() const;
+        int getRemainingSpace() const;
         bool reallocateEmptyPallet(std::string itemName, int itemCapacity);
         bool takeOne();
         bool putOne();
-        bool isEmpty();
-        bool isFull();
+        bool isEmpty() override;
+        bool isFull() override;
 };

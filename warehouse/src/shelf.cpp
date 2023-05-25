@@ -1,4 +1,5 @@
 #include "include\shelf.hpp"
+#include "include\pallet.hpp"
 
 Shelf::Shelf(){
     

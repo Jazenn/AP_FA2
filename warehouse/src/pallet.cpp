@@ -1,4 +1,5 @@
 #include "include\pallet.hpp"
+#include "include\IContainer.hpp"
 
 Pallet::Pallet(std::string itemName, int itemCapacity, int itemCount) : itemName(itemName), itemCapacity(itemCapacity), itemCount(itemCount){
 
@@ -8,34 +9,20 @@ Pallet::Pallet() : itemName("Unknown"), itemCapacity(1), itemCount(0){
 
 }
 
-std::string Pallet::getItemName(){
+std::string Pallet::getItemName() const{
     return itemName;
 }
 
-int Pallet::getItemCount(){
+int Pallet::getItemCount() const{
     return itemCount;
 }
 
-int Pallet::getItemCapacity(){
+int Pallet::getItemCapacity() const{
     return itemCapacity;
 }
 
-int Pallet::getRemainingSpace(){
+int Pallet::getRemainingSpace() const{
     return itemCapacity - itemCount;
-}
-
-bool Pallet::isEmpty(){
-    if(getItemCount() == 0){
-        return true;
-    }
-    return false;
-}
-
-bool Pallet::isFull(){
-    if(getRemainingSpace == 0){
-        return true;
-    }
-    return false;
 }
 
 bool Pallet::reallocateEmptyPallet(std::string itemName, int itemCapacity){
@@ -59,4 +46,18 @@ bool Pallet::putOne(){
         return false;
     }
     return true;
+}
+
+bool Pallet::isEmpty(){
+    if(getItemCount() == 0){
+        return true;
+    }
+    return false;
+}
+
+bool Pallet::isFull(){
+    if(getRemainingSpace() == 0){
+        return true;
+    }
+    return false;
 }

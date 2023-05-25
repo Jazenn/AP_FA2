@@ -1,4 +1,7 @@
 #include "include\warehouse.hpp"
+#include "include\employee.hpp"
+#include "include\shelf.hpp"
+#include "include\pallet.hpp"
 
 Warehouse::Warehouse(){
 
@@ -13,8 +16,9 @@ void Warehouse::addShelf(Shelf shelf){
 }
 
 bool Warehouse::rearrangeShelf(Shelf& shelf){
-    for(const Employee& employee : Employees){
+    for(Employee& employee : Employees){
         if(employee.forkliftCertificate){
+            employee.busy = true;
             for(int i = 0; i < 4; i ++){
                 Pallet key = shelf.pallets[i];
                 int j = i - 1;
@@ -25,8 +29,10 @@ bool Warehouse::rearrangeShelf(Shelf& shelf){
                 }
                 shelf.pallets[j + 1] = key;
             }
+            return true;
         }
     }
+    return false;
 }
 
 bool Warehouse::pickItems(std::string itemName, int itemCount){

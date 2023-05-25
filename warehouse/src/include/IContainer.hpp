@@ -1,4 +1,7 @@
+#pragma once
+
 class IContainer{
-    virtual bool isEmpty();
-    virtual bool isFull();
+    public:
+        virtual bool isEmpty() = 0;
+        virtual bool isFull() = 0;
 };
