@@ -2,6 +2,7 @@
 #include "include\employee.hpp"
 #include "include\shelf.hpp"
 #include "include\pallet.hpp"
+#include <iostream>
 
 Warehouse::Warehouse(){
 
@@ -56,4 +57,16 @@ bool Warehouse::pickItems(std::string itemName, int itemCount){
         }
     }
     return false;
+}
+
+std::ostream& operator<<(std::ostream& out, Warehouse& w){
+    out << "These are all the shelves and the pallets on them:\n";
+    for(int i = 0; i < w.Shelves.size(); i++){
+        out << w.Shelves[i] << "\n";
+    }
+    out << "These are all the employees:\n";
+    for(int i = 0; i < w.Employees.size(); i++){
+        out << w.Employees[i] << "\n";
+    }
+    return out;
 }

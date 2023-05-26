@@ -11,4 +11,5 @@ class Employee{
 
         Employee(std::string const name, bool forkliftCertificate);
         std::string getName();
+        friend std::ostream& operator<<(std::ostream& out, Employee& e);
 };

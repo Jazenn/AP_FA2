@@ -1,5 +1,6 @@
 #include "include\pallet.hpp"
 #include "include\IContainer.hpp"
+#include <iostream>
 
 Pallet::Pallet(std::string itemName, int itemCapacity, int itemCount) : itemName(itemName), itemCapacity(itemCapacity), itemCount(itemCount){
 
@@ -56,4 +57,9 @@ bool Pallet::isEmpty(){
 
 bool Pallet::isFull(){
     return getRemainingSpace() == 0;
+}
+
+std::ostream& operator<<(std::ostream& out, Pallet& p){
+    out << "Itemname: " << p.getItemName() << ", itemCount: " << p.getItemCount() << ", itemCapacity: " << p.getItemCapacity();
+    return out;
 }

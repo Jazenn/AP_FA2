@@ -10,4 +10,5 @@ class Shelf : public IContainer{
         bool swapPallet(int slot, int slot2);
         bool isEmpty() override;
         bool isFull() override;
+        friend std::ostream& operator<<(std::ostream& out, Shelf& s);
 };
