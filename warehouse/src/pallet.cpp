@@ -38,6 +38,7 @@ bool Pallet::takeOne(){
     if(isEmpty() == true){
         return false;
     }
+    itemCount -= 1;
     return true;
 }
 
@@ -45,19 +46,14 @@ bool Pallet::putOne(){
     if(isFull() == true){
         return false;
     }
+    itemCount += 1;
     return true;
 }
 
 bool Pallet::isEmpty(){
-    if(getItemCount() == 0){
-        return true;
-    }
-    return false;
+    return getItemCount() == 0;
 }
 
 bool Pallet::isFull(){
-    if(getRemainingSpace() == 0){
-        return true;
-    }
-    return false;
+    return getRemainingSpace() == 0;
 }

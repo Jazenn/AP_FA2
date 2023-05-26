@@ -17,13 +17,13 @@ void Warehouse::addShelf(Shelf shelf){
 
 bool Warehouse::rearrangeShelf(Shelf& shelf){
     for(Employee& employee : Employees){
-        if(employee.forkliftCertificate){
+        if(employee.forkliftCertificate && !employee.busy){
             employee.busy = true;
             for(int i = 0; i < 4; i ++){
                 Pallet key = shelf.pallets[i];
                 int j = i - 1;
 
-                while(key.getItemCount() < shelf.pallets[j].getItemCount() and j >= 0){
+                while(j >= 0 && key.getItemCount() < shelf.pallets[j].getItemCount()){
                     shelf.swapPallet(j + 1, j);
                     --j;
                 }
@@ -36,17 +36,21 @@ bool Warehouse::rearrangeShelf(Shelf& shelf){
 }
 
 bool Warehouse::pickItems(std::string itemName, int itemCount){
-    for(Shelf& shelf : Shelves){
-        for(int i = 0; i < 4; i++){
-            Pallet& pallet = shelf.pallets[i];
+    for(Employee& employee : Employees){
+        if(!employee.busy){
+            for(Shelf& shelf : Shelves){
+                for(int i = 0; i < 4; i++){
+                    Pallet& pallet = shelf.pallets[i];
 
-            if(pallet.getItemName() == itemName){
-                while(itemCount > 0 && pallet.takeOne()){
-                    itemCount --;
-                }
+                    if(pallet.getItemName() == itemName){
+                        while(itemCount > 0 && pallet.takeOne()){
+                            itemCount --;
+                        }
 
-                if(itemCount == 0){
-                    return true;
+                        if(itemCount == 0){
+                            return true;
+                        }
+                    }
                 }
             }
         }

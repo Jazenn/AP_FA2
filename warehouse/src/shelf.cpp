@@ -24,5 +24,9 @@ bool Shelf::isFull(){
 }
 
 bool Shelf::swapPallet(int slot, int slot2){
-    pallets[slot], pallets[slot2] = pallets[slot2], pallets[slot];
+    Pallet temporary_slot = pallets[slot];
+    pallets[slot] = pallets[slot2];
+    pallets[slot2] = temporary_slot;
+    return true;
 }
+
